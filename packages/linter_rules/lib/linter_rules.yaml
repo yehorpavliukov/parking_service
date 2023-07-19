@@ -101,7 +101,6 @@ dart_code_metrics:
 linter:
   rules:
     avoid_print: true
-    import_of_legacy_library_into_null_safe: true
     unawaited_futures: true
     always_put_required_named_parameters_first: true
     avoid_bool_literals_in_conditional_expressions: true
