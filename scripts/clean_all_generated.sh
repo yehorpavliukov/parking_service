@@ -1,0 +1,1 @@
+find . -maxdepth 20 -type f \( -name "*.inject.dart" -o  -name "*.config.dart" -o  -name "*.g.dart" -o  -name "*.config.dart" -o  -name "*.freezed.dart" -o  -name "*.gr.dart" -o  -name "*.moor.dart" -o  -name "*.chopper.dart" \) -delete
