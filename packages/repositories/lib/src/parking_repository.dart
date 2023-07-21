@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:models/models.dart';
 import 'package:repositories/repositories.dart';
 import 'package:services/services.dart';
@@ -7,7 +5,7 @@ import 'package:services/services.dart';
 part 'parking_repository.mapper.dart';
 
 class ParkingRepository extends BffRepository {
-  final ParkingService _service;
+  final IParkingService _service;
   ParkingModel? _parkingModel;
 
   ParkingRepository(super.connectivity, this._service);
@@ -23,18 +21,22 @@ class ParkingRepository extends BffRepository {
       if (result.isSuccess) {
         _parkingModel = result.success;
       }
+
       return result;
     } catch (e) {
-      log(e.toString());
       return const ApiResult.failure(FailureResult(
-          reason: FailureReasons.unknown, debugMessage: 'Parking is not initialized'));
+        reason: FailureReasons.unknown,
+        debugMessage: 'Parking is not initialized',
+      ));
     }
   }
 
   Future<ApiResult<TicketModel, FailureResult>> getFreeSlot(SlotType size) async {
     if (_parkingModel == null) {
       return const ApiResult.failure(FailureResult(
-          reason: FailureReasons.unknown, debugMessage: 'Parking is not initialized'));
+        reason: FailureReasons.unknown,
+        debugMessage: 'Parking is not initialized',
+      ));
     }
 
     final result = await guardApiCall<TicketModel, TicketDto>(
@@ -49,7 +51,7 @@ class ParkingRepository extends BffRepository {
       final ticket = result.success;
       final arrayWithIds = ticket.code.split('-');
       final slotId = arrayWithIds[1];
-      final floorId = arrayWithIds[0];
+      final floorId = arrayWithIds.first;
       _parkingModel = _changeSlotStatusByFloor(floorId: floorId, slotId: slotId, isBusy: true);
     }
 
@@ -59,12 +61,14 @@ class ParkingRepository extends BffRepository {
   Future<ApiResult<void, FailureResult>> releaseSlot(String code) async {
     if (_parkingModel == null) {
       return const ApiResult.failure(FailureResult(
-          reason: FailureReasons.unknown, debugMessage: 'Parking is not initialized'));
+        reason: FailureReasons.unknown,
+        debugMessage: 'Parking is not initialized',
+      ));
     }
 
     final arrayWithIds = code.split('-');
     final slotId = arrayWithIds[1];
-    final floorId = arrayWithIds[0];
+    final floorId = arrayWithIds.first;
 
     final result = await guardApiCall<void, void>(
       invoker: () async => _service.releaseSlot(
@@ -88,18 +92,21 @@ class ParkingRepository extends BffRepository {
     final parking = _parkingModel!;
 
     return parking.copyWith(
-        floors: parking.floors.map((floor) {
-      if (floor.id == floorId) {
-        return floor.copyWith(
+      floors: parking.floors.map((floor) {
+        if (floor.id == floorId) {
+          return floor.copyWith(
             slots: floor.slots.map((slot) {
-          if (slot.id == slotId) {
-            return slot.copyWith(isBusy: isBusy);
-          }
+              if (slot.id == slotId) {
+                return slot.copyWith(isBusy: isBusy);
+              }
 
-          return slot;
-        }).toList());
-      }
-      return floor;
-    }).toList());
+              return slot;
+            }).toList(),
+          );
+        }
+
+        return floor;
+      }).toList(),
+    );
   }
 }

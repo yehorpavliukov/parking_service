@@ -4,5 +4,10 @@
         "editor.rulers": [
             100
         ],
-    }
+    },
+    "dart.flutterSdkPaths": [
+        "/Users/usr/fvm/versions"
+    ],
+    "dart.flutterSdkPath": "/Users/usr/fvm/versions/3.10.1",
+    "build-runner.flutterPath": ".fvm/flutter_sdk/bin/flutter",
 }
