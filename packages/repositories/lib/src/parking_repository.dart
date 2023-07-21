@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:models/models.dart';
 import 'package:repositories/repositories.dart';
 import 'package:services/services.dart';
-import 'package:shared/shared.dart';
 
 part 'parking_repository.mapper.dart';
 
