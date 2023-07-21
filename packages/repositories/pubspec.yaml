@@ -8,10 +8,12 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  connectivity_plus: ^4.0.1
   flutter:
     sdk: flutter
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
+  mocktail: ^0.3.0
   models:
     path: ../models
   services:

@@ -6,6 +6,7 @@ part 'parking_model.freezed.dart';
 @freezed
 class ParkingModel with _$ParkingModel {
   const factory ParkingModel({
+    required String id,
     required List<FloorModel> floors,
     @Default('') String name,
   }) = _ParkingModel;

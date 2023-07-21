@@ -37,4 +37,4 @@ const testSlots = [
 
 const testFloor = FloorModel(slots: testSlots, id: 'id');
 
-const testParking = ParkingModel(floors: [testFloor, testFloor, testFloor]);
+const testParking = ParkingModel(id: 'id', floors: [testFloor, testFloor, testFloor]);
