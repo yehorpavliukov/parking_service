@@ -11,7 +11,7 @@ class ServiceBootstrapper extends ServiceLocator {
     final appManager = get<AppManager>();
     final chopperClient = _createClient(JsonSerializableConverter.instance, appManager);
 
-    registerLazySingleton(() => ParkingService.create(chopperClient));
+    registerLazySingleton<IParkingService>(() => appManager.isDev ? FakeParkingService() : ParkingService.create(chopperClient));
   }
 
   ChopperClient _createClient(
