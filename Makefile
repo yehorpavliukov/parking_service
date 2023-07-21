@@ -36,5 +36,4 @@ get_models:
 	cd packages/models && fvm flutter pub get
 
 setup_proj:
-	scripts/get_all.sh
-	scripts/gen_all.sh
+	scripts/setup.sh
