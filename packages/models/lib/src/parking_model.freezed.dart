@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ParkingModel {
+  String get id => throw _privateConstructorUsedError;
   List<FloorModel> get floors => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
@@ -30,7 +31,7 @@ abstract class $ParkingModelCopyWith<$Res> {
           ParkingModel value, $Res Function(ParkingModel) then) =
       _$ParkingModelCopyWithImpl<$Res, ParkingModel>;
   @useResult
-  $Res call({List<FloorModel> floors, String name});
+  $Res call({String id, List<FloorModel> floors, String name});
 }
 
 /// @nodoc
@@ -46,10 +47,15 @@ class _$ParkingModelCopyWithImpl<$Res, $Val extends ParkingModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? floors = null,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       floors: null == floors
           ? _value.floors
           : floors // ignore: cast_nullable_to_non_nullable
@@ -70,7 +76,7 @@ abstract class _$$_ParkingModelCopyWith<$Res>
       __$$_ParkingModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<FloorModel> floors, String name});
+  $Res call({String id, List<FloorModel> floors, String name});
 }
 
 /// @nodoc
@@ -84,10 +90,15 @@ class __$$_ParkingModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? floors = null,
     Object? name = null,
   }) {
     return _then(_$_ParkingModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       floors: null == floors
           ? _value._floors
           : floors // ignore: cast_nullable_to_non_nullable
@@ -104,10 +115,14 @@ class __$$_ParkingModelCopyWithImpl<$Res>
 
 class _$_ParkingModel extends _ParkingModel {
   const _$_ParkingModel(
-      {required final List<FloorModel> floors, this.name = ''})
+      {required this.id,
+      required final List<FloorModel> floors,
+      this.name = ''})
       : _floors = floors,
         super._();
 
+  @override
+  final String id;
   final List<FloorModel> _floors;
   @override
   List<FloorModel> get floors {
@@ -122,7 +137,7 @@ class _$_ParkingModel extends _ParkingModel {
 
   @override
   String toString() {
-    return 'ParkingModel(floors: $floors, name: $name)';
+    return 'ParkingModel(id: $id, floors: $floors, name: $name)';
   }
 
   @override
@@ -130,13 +145,14 @@ class _$_ParkingModel extends _ParkingModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ParkingModel &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._floors, _floors) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_floors), name);
+      runtimeType, id, const DeepCollectionEquality().hash(_floors), name);
 
   @JsonKey(ignore: true)
   @override
@@ -147,10 +163,13 @@ class _$_ParkingModel extends _ParkingModel {
 
 abstract class _ParkingModel extends ParkingModel {
   const factory _ParkingModel(
-      {required final List<FloorModel> floors,
+      {required final String id,
+      required final List<FloorModel> floors,
       final String name}) = _$_ParkingModel;
   const _ParkingModel._() : super._();
 
+  @override
+  String get id;
   @override
   List<FloorModel> get floors;
   @override
