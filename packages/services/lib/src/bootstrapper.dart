@@ -2,10 +2,10 @@ import 'package:chopper/chopper.dart';
 import 'package:services/services.dart';
 import 'package:shared/shared.dart';
 
-class ServicesBootstrapper extends ServiceLocator {
-  static final instance = ServicesBootstrapper._();
+class ServiceBootstrapper extends ServiceLocator {
+  static final instance = ServiceBootstrapper._();
 
-  ServicesBootstrapper._();
+  ServiceBootstrapper._();
 
   Future<void> initialize() async {
     final appManager = get<AppManager>();
