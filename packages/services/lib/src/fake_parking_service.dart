@@ -247,8 +247,4 @@ final _testFloor = FloorDto(slots: testSlots, id: '400', name: 'Floor');
 
 final _testParking = ParkingDto(id: 'id', floors: [
   _testFloor,
-  _testFloor.copyWith(id: '500'),
-  _testFloor.copyWith(
-    id: '600',
-  ),
 ]);
